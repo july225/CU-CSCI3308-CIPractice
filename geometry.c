@@ -36,6 +36,26 @@ double coord_2d_dist(const coord_2d_t* a, const coord_2d_t* b){
 
 }
 
+double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c) {
+
+    /* Input Checks */
+    if(!a){
+        DEBUG(__FILE__, __LINE__, __func__, "'a' must not be NULL");
+        return NAN;
+    }
+    if(!b){
+        DEBUG(__FILE__, __LINE__, __func__, "'b' must not be NULL");
+        return NAN;
+    }
+
+    if(!c){
+        DEBUG(__FILE__, __LINE__, __func__, "'c' must not be NULL");
+        return NAN;
+    }
+    printf("a:(%f,%f), b:(%f,%f), c:(%f,%f)\n",a->x,a->y,b->x,b->y,c->x,c->y);
+    return fabs((a->x * (b->y-c->y) + b->x*(c->y-a->y) + c->x * (a->y-b->y))/2.0);
+}
+
 bool coord_2d_eq(const coord_2d_t* a, const coord_2d_t* b){
 
     /* Equal if dist <= FUZZY_EQ */
@@ -63,6 +83,9 @@ void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b
         DEBUG(__FILE__, __LINE__, __func__, "'b' must not be NULL");
         return;
     }
+
+
+	
 
     /* Maths */
     mid->x = ((a->x + b->x) / 2.0 );
