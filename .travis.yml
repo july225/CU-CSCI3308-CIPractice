@@ -1,0 +1,5 @@
+before_install: <To take of the dependencies>
+language: c
+compiler: gcc
+script: <the make command to run the testcase>
+sudo: required
